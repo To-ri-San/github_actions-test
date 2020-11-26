@@ -1,6 +1,5 @@
 # コードを実行するコンテナイメージ
-FROM amazonlinux:2
-
+FROM alpine:3.10
 # アクションのリポジトリからコードファイルをファイルシステムパスへコピー
 `/` of the container
 COPY entrypoint.sh /entrypoint.sh
