@@ -5,8 +5,8 @@ ENV RUBY_VERSION="2.5.1"
 #`/` of the container
 
 RUN yum update -y && \
-    mkdir toypo-api
-#COPY * /toypo-api/
+    mkdir toypo-api && \
+    yum install -y git \
 COPY  * /toypo-api/
 COPY entrypoint.sh /toypo-api/entrypoint.sh
 RUN ls -la toypo-api/ 
