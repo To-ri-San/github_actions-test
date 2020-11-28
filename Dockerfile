@@ -7,8 +7,8 @@ ENV RUBY_VERSION="2.5.1"
 RUN yum update -y && \
     mkdir toypo-api
 #COPY * /toypo-api/
-COPY  entrypoint.sh /entrypoint.sh
+COPY  * /toypo-api/entrypoint.sh
 RUN ls -la toypo-api/ 
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/toypp-api/entrypoint.sh"]
