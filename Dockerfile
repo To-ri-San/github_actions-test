@@ -8,4 +8,4 @@ RUN yum update -y && \
     mkdir toypo-api
 COPY * /toypo-api/
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["toypo-api/entrypoint.sh"]
