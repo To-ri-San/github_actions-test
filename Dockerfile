@@ -12,4 +12,4 @@ COPY entrypoint.sh /toypo-api/entrypoint.sh
 RUN ls -la toypo-api/ 
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
-ENTRYPOINT ["/toypp-api/entrypoint.sh"]
+ENTRYPOINT ["/toypo-api/entrypoint.sh"]
