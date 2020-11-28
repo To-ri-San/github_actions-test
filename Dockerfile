@@ -10,4 +10,4 @@ COPY * /toypo-api/
 RUN ls -la toypo-api/ && \
     chmod +x toypo-api/entrypoint.sh
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
-CMD ["/bin/sh","toypo-api/entrypoint.sh"]
+CMD ["toypo-api/entrypoint.sh"]
