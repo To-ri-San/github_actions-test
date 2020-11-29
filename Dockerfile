@@ -10,7 +10,8 @@ RUN yum update -y && \
     gcc \
     openssl-devel\
     readline-devel\
-    zlib-devel
+    zlib-devel \
+    git
 
 COPY  * /toypo-api/
 COPY entrypoint.sh /toypo-api/entrypoint.sh
