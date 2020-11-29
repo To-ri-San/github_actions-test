@@ -3,7 +3,7 @@ FROM amazonlinux:2
 # アクションのリポジトリからコードファイルをファイルシステムパスへコピー
 ENV RUBY_VERSION="2.5.1" 
 #`/` of the container
-SHELL ["/bin/sh", "-c"]
+
 RUN yum update -y && \
     mkdir toypo-api && \
     yum install -y \
