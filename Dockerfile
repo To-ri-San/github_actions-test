@@ -7,7 +7,7 @@ ENV RUBY_VERSION="2.5.1"
 #`/` of the container
 
 # Install git, SSH, and other utilities
-RUN set -ex && \
+RUN set -ex \
     && yum update -y  \
     && mkdir toypo-api  \
     && yum install -y openssh-clients \
