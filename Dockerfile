@@ -11,7 +11,8 @@ RUN yum update -y && \
     openssl-devel\
     readline-devel\
     zlib-devel \
-    git
+    git \
+    which
 
 COPY  * /toypo-api/
 COPY entrypoint.sh /toypo-api/entrypoint.sh
@@ -41,7 +42,6 @@ RUN set -ex \
     && echo 'export PATH=$RBENV_SRC_DIR/bin:$PATH' >> ~/.bashrc \
     && echo 'eval "$(rbenv init -)"' >> ~/.bashrc \
     && source ~/.bashrc \
-    && yum install which \
     && curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash \
     && git clone https://github.com/rbenv/ruby-build.git $RUBY_BUILD_SRC_DIR \
     # && sh $RUBY_BUILD_SRC_DIR/install.sh \
