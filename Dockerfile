@@ -36,6 +36,8 @@ RUN set -ex \
 RUN useradd codebuild-user
 COPY  * /toypo-api/
 COPY entrypoint.sh /toypo-api/entrypoint.sh
+COPY Gemfile /toypo-api/Gemfile
+COPY Gemfile.lock /toypo-api/Gemfile.lock
 RUN cd /toypo-api/ &&\
     ls -la
 # AWS Tools
