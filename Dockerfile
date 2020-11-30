@@ -8,6 +8,8 @@ RUN yum update -y && \
     mkdir toypo-api && \
     yum install -y \
     gcc \
+    make \
+    bzip2\
     openssl-devel\
     readline-devel\
     zlib-devel \
