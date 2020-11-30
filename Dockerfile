@@ -34,7 +34,7 @@ RUN  touch ~/.bashrc
  #   && ruby -v
 ENV RBENV_SRC_DIR="/usr/local/rbenv"
 
-    ENV PATH="/root/.rbenv/shims:$RBENV_SRC_DIR/bin:$RBENV_SRC_DIR/shims:$PATH" \
+ENV PATH="/root/.rbenv/shims:$RBENV_SRC_DIR/bin:$RBENV_SRC_DIR/shims:$PATH" \
     RUBY_BUILD_SRC_DIR="$RBENV_SRC_DIR/plugins/ruby-build"
 
 RUN set -ex \
