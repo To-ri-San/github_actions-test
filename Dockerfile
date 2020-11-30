@@ -1,5 +1,5 @@
 # コードを実行するコンテナイメージ
-FROM centos:7
+FROM amazonlinux:2
 # アクションのリポジトリからコードファイルをファイルシステムパスへコピー
 ENV RUBY_VERSION="2.5.1" 
 #`/` of the container
