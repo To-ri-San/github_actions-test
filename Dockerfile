@@ -31,7 +31,7 @@ RUN ls -la toypo-api/
 ENV RBENV_SRC_DIR="/usr/local/rbenv"
 
 # ENV PATH="/root/.rbenv/shims:\
-ENV PATH=$RBENV_SRC_DIR/bin:$RBENV_SRC_DIR/shims:$PATH" \
+ENV PATH="$RBENV_SRC_DIR/bin:$RBENV_SRC_DIR/shims:$PATH" \
     RUBY_BUILD_SRC_DIR="$RBENV_SRC_DIR/plugins/ruby-build"
 
 RUN set -ex \
