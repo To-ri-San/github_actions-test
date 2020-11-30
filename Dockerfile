@@ -1,31 +1,10 @@
 # コードを実行するコンテナイメージ
-FROM amazonlinux:2
+FROM amazonlinux:2 AS core
 SHELL ["/bin/bash", "-c"]
 ENV EPEL_REPO="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
 # アクションのリポジトリからコードファイルをファイルシステムパスへコピー
 ENV RUBY_VERSION="2.5.1" 
 #`/` of the container
-
-RUN yum update -y && \
-    mkdir toypo-api && \
-    yum install -y \
-    && yum install -y $EPEL_REPO \
-    && rpm --import https://download.mono-project.com/repo/xamarin.gpg \
-    && curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo \
-    && amazon-linux-extras enable corretto8 \
-    && yum groupinstall -y "Development tools" \
-    && yum install -y \
-           GeoIP-devel ImageMagick asciidoc bzip2-devel bzr bzrtools cvs cvsps \
-           docbook-dtds docbook-style-xsl dpkg-dev e2fsprogs expat-devel expect fakeroot \
-           glib2-devel groff gzip icu iptables jq krb5-server libargon2-devel \
-           libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
-           libicu-devel libjpeg-devel libpng-devel libserf libsqlite3x-devel \
-           libtidy-devel libunwind libwebp-devel libxml2-devel libxslt libxslt-devel \
-           libyaml-devel libzip-devel mariadb-devel mercurial mlocate mono-devel \
-           ncurses-devel oniguruma-devel openssl openssl-devel perl-DBD-SQLite \
-           perl-DBI perl-HTTP-Date perl-IO-Pty-Easy perl-TimeDate perl-YAML-LibYAML \
-           postgresql-devel procps-ng python-configobj readline-devel rsync sgml-common \
-           subversion-perl tar tcl tk vim wget which xfsprogs xmlto xorg-x11-server-Xvfb xz-devel
 
 # Install git, SSH, and other utilities
 RUN set -ex && \
@@ -55,6 +34,7 @@ RUN set -ex && \
            postgresql-devel procps-ng python-configobj readline-devel rsync sgml-common \
            subversion-perl tar tcl tk vim wget which xfsprogs xmlto xorg-x11-server-Xvfb xz-devel 
 
+RUN useradd codebuild-user
 COPY  * /toypo-api/
 COPY entrypoint.sh /toypo-api/entrypoint.sh
 RUN  touch ~/.bashrc 
