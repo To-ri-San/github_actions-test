@@ -61,8 +61,7 @@ RUN rbenv install $RUBY_VERSION; rm -rf /tmp/*; rbenv global $RUBY_VERSION;ruby 
 
 ##rails
 RUN gem install bundler && \
-    gem install rails -v 5.2.1
-
+    bundle install 
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
 ENTRYPOINT ["/toypo-api/entrypoint.sh"]
