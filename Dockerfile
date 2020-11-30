@@ -39,7 +39,7 @@ RUN set -ex \
     && mkdir -p $RBENV_SRC_DIR/plugins \
     && git clone https://github.com/rbenv/ruby-build.git $RUBY_BUILD_SRC_DIR \
     # && sh $RUBY_BUILD_SRC_DIR/install.sh \
-    && echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    && echo 'eval "$(rbenv init -)"' >> ~/.bashrc \
     && rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION 
     # && ruby -v
 #**************** END RUBY *****************************************************
