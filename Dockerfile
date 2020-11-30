@@ -40,7 +40,7 @@ RUN set -ex \
     && echo '# rbenv' >> ~/.bashrc \
     && echo 'export PATH=$RBENV_SRC_DIR/bin:$PATH' >> ~/.bashrc \
     && echo 'eval "$(rbenv init -)"' >> ~/.bashrc \
-    && source .bashrc \
+    && source ~/.bashrc \
     && git clone https://github.com/rbenv/ruby-build.git $RUBY_BUILD_SRC_DIR \
     # && sh $RUBY_BUILD_SRC_DIR/install.sh \
     && rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION 
