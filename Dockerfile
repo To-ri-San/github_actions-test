@@ -63,7 +63,7 @@ RUN rbenv install $RUBY_VERSION; rm -rf /tmp/*; rbenv global $RUBY_VERSION;ruby 
 
 ##rails
 RUN gem install bundler -v 2.0.2 && \
-    bundle install 
+    bundle install --gemfile=/toypo-api/Gemfile
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
 ENTRYPOINT ["/toypo-api/entrypoint.sh"]
