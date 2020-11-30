@@ -1,5 +1,6 @@
 # コードを実行するコンテナイメージ
 FROM amazonlinux:2
+SHELL ["/bin/bash", "-c"]
 # アクションのリポジトリからコードファイルをファイルシステムパスへコピー
 ENV RUBY_VERSION="2.5.1" 
 #`/` of the container
