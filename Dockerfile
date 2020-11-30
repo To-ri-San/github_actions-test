@@ -19,7 +19,7 @@ RUN yum update -y && \
 
 COPY  * /toypo-api/
 COPY entrypoint.sh /toypo-api/entrypoint.sh
-RUN ls -la toypo-api/ 
+RUN  touch ~/.bashrc 
 
 #**************** RUBY *********************************************************
 # RUN set -ex \
