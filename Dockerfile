@@ -28,7 +28,7 @@ RUN  touch ~/.bashrc
 
 # ENV PATH="/root/.rbenv/shims:$RBENV_SRC_DIR/bin:$RBENV_SRC_DIR/shims:$PATH" \
 #     RUBY_BUILD_SRC_DIR="$RBENV_SRC_DIR/plugins/ruby-build"
-
+ENV PATH="$HOME/.rbenv/bin:$PATH"
 RUN set -ex \
     # && git clone https://github.com/rbenv/rbenv.git $RBENV_SRC_DIR \
     && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv \
