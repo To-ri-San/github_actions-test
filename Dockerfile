@@ -60,7 +60,7 @@ RUN set -ex \
 RUN rbenv install $RUBY_VERSION; rm -rf /tmp/*; rbenv global $RUBY_VERSION;ruby -v
 
 ##rails
-RUN gem install bundler && \
+RUN gem install bundler -v 2.0.2 && \
     bundle install 
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
