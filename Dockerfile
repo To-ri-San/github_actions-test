@@ -36,8 +36,7 @@ RUN set -ex \
 RUN useradd codebuild-user
 COPY  * /toypo-api/
 COPY entrypoint.sh /toypo-api/entrypoint.sh
-RUN  touch ~/.bashrc 
-
+RUN cd /toypo-api/
 # AWS Tools
 RUN curl -sS -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator \
     && curl -sS -o /usr/local/bin/kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl \
