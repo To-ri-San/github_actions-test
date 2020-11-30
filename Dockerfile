@@ -37,8 +37,9 @@ ENV PATH="$RBENV_SRC_DIR/bin:$RBENV_SRC_DIR/shims:$PATH" \
 RUN set -ex \
     && git clone https://github.com/rbenv/rbenv.git $RBENV_SRC_DIR \
     && mkdir -p $RBENV_SRC_DIR/plugins \
-    && echo 'export PATH=$RBENV_SRC_DIR/bin:$PATH' >> ~/.bashrc \
-    && echo 'eval "$(rbenv init -)"' >> ~/.bashrc \
+    && echo '# rbenv' >> ~/.bash_profile \
+    && echo 'export PATH=$RBENV_SRC_DIR/bin:$PATH' >> ~/.bash_profile \
+    && echo 'eval "$(rbenv init -)"' >> ~/.bash_profile \
     && git clone https://github.com/rbenv/ruby-build.git $RUBY_BUILD_SRC_DIR \
     # && sh $RUBY_BUILD_SRC_DIR/install.sh \
     && rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION 
