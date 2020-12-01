@@ -34,7 +34,7 @@ RUN set -ex \
            subversion-perl tar tcl tk vim wget which xfsprogs xmlto xorg-x11-server-Xvfb xz-devel 
 
 RUN useradd codebuild-user
-COPY  * /toypo-api/
+
 COPY entrypoint.sh /toypo-api/entrypoint.sh
 COPY Gemfile /toypo-api/Gemfile
 COPY Gemfile.lock /toypo-api/Gemfile.lock
