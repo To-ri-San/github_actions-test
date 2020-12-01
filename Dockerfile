@@ -61,9 +61,14 @@ RUN set -ex \
 
 RUN rbenv install $RUBY_VERSION; rm -rf /tmp/*; rbenv global $RUBY_VERSION;ruby -v
 
-##rails
+##rails,puma,redis
 RUN gem install bundler -v 2.0.2 && \
     bundle install --gemfile=/toypo-api/Gemfile
+
+#postgreswql
+RUUN rpm -ivh --nodeps https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
+    sed -i "s/\$releasever/7/g" "/etc/yum.repos.d/pgdg-redhat-all.repo" && \
+    yum install -y postgresql11
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
 ENTRYPOINT ["/toypo-api/entrypoint.sh"]
