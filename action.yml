@@ -4,5 +4,5 @@ description: 'Creat DBserver and Docker conteiner'
 runs:
     using: 'docker'
     image: 'Dockerfile'
-    args:
-        - ${{ inputs.who-to-greet }}
+    # args:
+    #     - ${{ inputs.who-to-greet }}
