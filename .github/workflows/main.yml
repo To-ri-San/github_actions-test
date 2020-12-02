@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     name: test-code
     steps:
-    - name: run rspec
+    - name: run-rspec
       uses: To-ri-San/github_actions-test@main
