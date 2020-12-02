@@ -31,7 +31,7 @@ RUN set -ex \
            ncurses-devel oniguruma-devel openssl openssl-devel perl-DBD-SQLite \
            perl-DBI perl-HTTP-Date perl-IO-Pty-Easy perl-TimeDate perl-YAML-LibYAML \
            postgresql-devel procps-ng python-configobj readline-devel rsync sgml-common \
-           subversion-perl tar tcl tk vim wget which xfsprogs xmlto xorg-x11-server-Xvfb xz-devel 
+           subversion-perl tar tcl tk vim wget which xfsprogs xmlto xorg-x11-server-Xvfb xz-devel  bzip2
 
 RUN useradd codebuild-user
 
@@ -69,6 +69,8 @@ RUN gem install bundler -v 2.0.2 && \
 RUN rpm -ivh --nodeps https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
     sed -i "s/\$releasever/7/g" "/etc/yum.repos.d/pgdg-redhat-all.repo" && \
     yum install -y postgresql11 postgresql11-contrib
+#postgres11-server
+RUN  yum -y install postgresql11-server
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
 ENTRYPOINT ["/toypo-api/entrypoint.sh"]
