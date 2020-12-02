@@ -6,7 +6,7 @@ jobs:
   test code:
     runs-on: ubuntu-latest
     name: test-code
-    steps:
+    # steps:
     #  services:
     #   postgres:
     #     image: postgres:12
