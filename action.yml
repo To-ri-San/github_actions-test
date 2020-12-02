@@ -1,13 +1,27 @@
-name: 'Hello World.'
+name: 'rspec.'
 description: 'Greet someone and record the time'
-inputs:
-    who-to-greet:
-        description: 'Who to greet'
-        required: true
-        default: 'World'
+# inputs:
+#     who-to-greet:
+#         description: 'Who to greet'
+#         required: true
+#         default: 'World'
 #outputs:
  #   time:
 #        description: 'The time we greeted you'
+    # services:
+    #   postgres:
+    #     image: postgres:12
+    #     env:
+    #       POSTGRES_USER: postgres
+    #       POSTGRES_PASSWORD: postgres
+    #       POSTGRES_DB: my_database
+    #     options: >-
+    #       --health-cmd pg_isready
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
+    #     ports:
+    #       - 5432:5432
 runs:
     using: 'docker'
     image: 'Dockerfile'
