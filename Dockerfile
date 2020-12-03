@@ -69,8 +69,7 @@ RUN gem install bundler -v 2.0.2 && \
 RUN rpm -ivh --nodeps https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
     sed -i "s/\$releasever/7/g" "/etc/yum.repos.d/pgdg-redhat-all.repo" && \
     yum install -y postgresql11 postgresql11-contrib
-#postgres11-server
-RUN  yum -y install postgresql11-server
+
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
 ENTRYPOINT ["/toypo-api/entrypoint.sh"]
