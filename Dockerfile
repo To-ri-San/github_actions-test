@@ -4,7 +4,7 @@ SHELL ["/bin/bash", "-c"]
 ENV EPEL_REPO="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
 
 ENV RUBY_VERSION="2.5.1" 
-
+RUN echo timeout=60 >> /etc/yum.conf
 # Install git, SSH, and other utilities
 RUN set -ex \
     && yum update -y  \
