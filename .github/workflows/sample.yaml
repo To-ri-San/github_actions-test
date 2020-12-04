@@ -1,0 +1,38 @@
+name: Ruby CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: pguser
+          POSTGRES_PASSWORD: password
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    container:
+      image: ruby:2.6.5
+      env:
+        RAILS_ENV: test
+        RAILS_DATABASE_HOST: postgres # this is needed
+        RAILS_DATABASE_USER: pguser
+        RAILS_DATABASE_PASSWORD: password
+    steps:
+    - uses: actions/checkout@v1
+    - name: Prepare bundler
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+      working-directory: ./src
+    - name: Prepare database
+      run: |
+        bin/rails db:create
+        bin/rails db:schema:load
+      working-directory: ./src
+    - name: Run test
+      run: bin/rspec
+      working-directory: ./src
