@@ -33,6 +33,7 @@ RUN set -ex \
            postgresql-devel procps-ng python-configobj readline-devel rsync sgml-common \
            subversion-perl tar tcl tk vim wget which xfsprogs xmlto xorg-x11-server-Xvfb xz-devel  bzip2
 
+
 RUN useradd codebuild-user
 
 COPY entrypoint.sh /toypo-api/entrypoint.sh
