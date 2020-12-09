@@ -1,40 +1,35 @@
-name: RUN github actions
+name: Ruby CI
 
-on: push
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11
+        image: postgres:12
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test
+          POSTGRES_USER: pguser
+          POSTGRES_PASSWORD: password
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-    container: 
-      image: ghcr.io/toypo/toypo-docker:latest
-      credentials:
-        username: To-ri-San
-        password: b7effaa456496e4b77f65438288b8466e9808b84
+    container:
+      image: ruby:2.6.5
       env:
         RAILS_ENV: test
         RAILS_DATABASE_HOST: postgres # this is needed
-        RAILS_DATABASE_USER: postgres
-        RAILS_DATABASE_PASSWORD: postgres
-        POSTGRES_DB: test
-
+        RAILS_DATABASE_USER: pguser
+        RAILS_DATABASE_PASSWORD: password
     steps:
     - uses: actions/checkout@v1
-    # - name: Prepare database
-    #   run: 
-    #     bundle exec rake db:create
-    #     bundle exec rake db:schema:load
-    - name: db migrate
-      run:
-        bundle exec rails db:migrate
-    - name: Run rspec
-      run: bundle exec rspec
+    - name: Prepare bundler
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+    - name: Prepare database
+      run: |
+        bin/rails db:create
+        bin/rails db:schema:load
+    - name: Run test
+      run: bin/rspec
