@@ -1,4 +1,4 @@
-name: Ruby CI
+name: github actions ci
 
 on: [push]
 
