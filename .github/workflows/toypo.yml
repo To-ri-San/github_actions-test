@@ -1,9 +1,6 @@
 name: RUN github actions
 
-on: 
-  push:
-    branches:
-      - 'github_action_test'
+on: push
 
 jobs:
   build:
