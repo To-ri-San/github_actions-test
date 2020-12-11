@@ -21,23 +21,22 @@ RUN set -ex \
     && amazon-linux-extras enable corretto8 \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
-           GeoIP-devel ImageMagick asciidoc bzip2-devel bzr bzrtools cvs cvsps \
-        #    docbook-dtds docbook-style-xsl\
+           GeoIP-devel ImageMagick asciidoc\
+        #    bzip2-devel bzr bzrtools cvs cvsps \
            dpkg-dev e2fsprogs expat-devel expect fakeroot \
            glib2-devel groff gzip icu iptables jq krb5-server libargon2-devel \
            libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
-           libicu-devel libjpeg-devel libpng-devel libserf \
-        #    libsqlite3x-devel \
-           libtidy-devel libunwind libwebp-devel libxml2-devel \
-        #    libxslt libxslt-devel \
-           libyaml-devel libzip-devel mariadb-devel mercurial mlocate mono-devel \
+        #    libicu-devel libjpeg-devel libpng-devel libserf \
+        #    libtidy-devel libunwind libwebp-devel libxml2-devel \
+           libyaml-devel libzip-devel\
+            # mercurial mlocate mono-devel \
            ncurses-devel oniguruma-devel \
-        #    perl-DBI perl-HTTP-Date perl-IO-Pty-Easy perl-TimeDate perl-YAML-LibYAML \
-           postgresql-devel procps-ng python-configobj readline-devel \ 
+        #    postgresql-devel procps-ng python-configobj\
+           readline-devel \ 
            sgml-common \
-        #    subversion-perl \
-           tar tcl tk  wget which \
-        #    xfsprogs xmlto xorg-x11-server-Xvfb xz-devel\
+           tar \
+        #    tcl \
+           tk  wget which \
            bzip2
 
 
