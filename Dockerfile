@@ -29,9 +29,9 @@ RUN set -ex \
            libicu-devel libjpeg-devel libpng-devel libserf \
            libtidy-devel libunwind libwebp-devel libxml2-devel \
            libyaml-devel libzip-devel\
-            mercurial mlocate mono-devel \
-           ncurses-devel oniguruma-devel \
-        #    postgresql-devel procps-ng python-configobj\
+            # mercurial mlocate mono-devel \
+        #    ncurses-devel oniguruma-devel \
+           postgresql-devel procps-ng python-configobj\
            readline-devel \ 
            sgml-common \
            tar \
