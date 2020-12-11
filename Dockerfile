@@ -9,12 +9,12 @@ RUN echo timeout=60 >> /etc/yum.conf
 RUN set -ex \
     && yum update -y  \
     && mkdir toypo-api  \
-    && yum install -y openssh-clients \
-    && mkdir ~/.ssh \
-    && touch ~/.ssh/known_hosts \
-    && ssh-keyscan -t rsa,dsa -H github.com >> ~/.ssh/known_hosts \
-    && ssh-keyscan -t rsa,dsa -H bitbucket.org >> ~/.ssh/known_hosts \
-    && chmod 600 ~/.ssh/known_hosts \
+    # && yum install -y openssh-clients \
+    # && mkdir ~/.ssh \
+    # && touch ~/.ssh/known_hosts \
+    # && ssh-keyscan -t rsa,dsa -H github.com >> ~/.ssh/known_hosts \
+    # && ssh-keyscan -t rsa,dsa -H bitbucket.org >> ~/.ssh/known_hosts \
+    # && chmod 600 ~/.ssh/known_hosts \
     && yum install -y $EPEL_REPO \
     && rpm --import https://download.mono-project.com/repo/xamarin.gpg \
     && curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo \
@@ -22,19 +22,23 @@ RUN set -ex \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
            GeoIP-devel ImageMagick asciidoc bzip2-devel bzr bzrtools cvs cvsps \
-           docbook-dtds docbook-style-xsl dpkg-dev e2fsprogs expat-devel expect fakeroot \
+        #    docbook-dtds docbook-style-xsl\
+           dpkg-dev e2fsprogs expat-devel expect fakeroot \
            glib2-devel groff gzip icu iptables jq krb5-server libargon2-devel \
            libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
-           libicu-devel libjpeg-devel libpng-devel libserf libsqlite3x-devel \
-           libtidy-devel libunwind libwebp-devel libxml2-devel libxslt libxslt-devel \
+           libicu-devel libjpeg-devel libpng-devel libserf \
+        #    libsqlite3x-devel \
+           libtidy-devel libunwind libwebp-devel libxml2-devel \
+        #    libxslt libxslt-devel \
            libyaml-devel libzip-devel mariadb-devel mercurial mlocate mono-devel \
            ncurses-devel oniguruma-devel \
-           #openssl openssl-devel perl-DBD-SQLite \
         #    perl-DBI perl-HTTP-Date perl-IO-Pty-Easy perl-TimeDate perl-YAML-LibYAML \
            postgresql-devel procps-ng python-configobj readline-devel \ 
-           #rsync
            sgml-common \
-           subversion-perl tar tcl tk  wget which xfsprogs xmlto xorg-x11-server-Xvfb xz-devel  bzip2
+        #    subversion-perl \
+           tar tcl tk  wget which \
+        #    xfsprogs xmlto xorg-x11-server-Xvfb xz-devel\
+           bzip2
 
 
 RUN useradd codebuild-user
