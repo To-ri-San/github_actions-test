@@ -31,7 +31,7 @@ RUN set -ex \
            libyaml-devel libzip-devel\
         #    postgresql-devel procps-ng python-configobj\
             readline-devel \ 
-        #    sgml-common \
+           sgml-common \
            tar \
            tcl \
            tk  wget which bzip2
