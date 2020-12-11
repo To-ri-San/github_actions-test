@@ -31,7 +31,7 @@ RUN set -ex \
            libyaml-devel libzip-devel\
             mercurial mlocate mono-devel \
            ncurses-devel oniguruma-devel \
-           postgresql-devel procps-ng python-configobj\
+        #    postgresql-devel procps-ng python-configobj\
            readline-devel \ 
            sgml-common \
            tar \
