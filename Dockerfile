@@ -22,7 +22,7 @@ RUN set -ex \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
            GeoIP-devel ImageMagick asciidoc\
-        #    bzip2-devel bzr bzrtools cvs cvsps \
+           bzip2-devel bzr bzrtools cvs cvsps \
            dpkg-dev e2fsprogs expat-devel expect fakeroot \
            glib2-devel groff gzip icu iptables jq krb5-server libargon2-devel \
            libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
