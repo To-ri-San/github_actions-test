@@ -21,23 +21,20 @@ RUN set -ex \
     && amazon-linux-extras enable corretto8 \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
-        #    GeoIP-devel ImageMagick asciidoc \
            openssl-devel\
            bzip2-devel \
-        #    bzr bzrtools cvs cvsps \
            dpkg-dev e2fsprogs expat-devel expect fakeroot \
            glib2-devel groff gzip icu iptables jq krb5-server libargon2-devel \
            libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
            libicu-devel libjpeg-devel libpng-devel libserf \
            libtidy-devel libunwind libwebp-devel libxml2-devel \
            libyaml-devel libzip-devel\
-           postgresql-devel procps-ng python-configobj\
-           readline-devel \ 
-           sgml-common \
+        #    postgresql-devel procps-ng python-configobj\
+            readline-devel \ 
+        #    sgml-common \
            tar \
            tcl \
-           tk  wget which \
-           bzip2
+           tk  wget which bzip2
 
 
 RUN useradd codebuild-user
