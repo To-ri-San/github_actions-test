@@ -9,6 +9,7 @@ RUN echo timeout=60 >> /etc/yum.conf
 RUN set -ex \
     && yum update -y  \
     && mkdir toypo-api  \
+
     && yum install -y $EPEL_REPO \
     && rpm --import https://download.mono-project.com/repo/xamarin.gpg \
     && curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo \
@@ -16,8 +17,7 @@ RUN set -ex \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
            openssl-devel bzip2-devel \
-           dpkg-dev \
-           e2fsprogs expat-devel expect fakeroot \
+           dpkg-dev e2fsprogs expat-devel expect fakeroot \
            glib2-devel groff gzip\
            libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
            libtidy-devel libunwind libwebp-devel libxml2-devel \
