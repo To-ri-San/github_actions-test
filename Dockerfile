@@ -17,7 +17,7 @@ RUN set -ex \
     && yum install -y \
            openssl-devel bzip2-devel \
            dpkg-dev \
-        #    e2fsprogs expat-devel expect fakeroot \
+           e2fsprogs expat-devel expect fakeroot \
            glib2-devel groff gzip\
            libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
            libtidy-devel libunwind libwebp-devel libxml2-devel \
