@@ -30,9 +30,8 @@ RUN set -ex \
            libtidy-devel libunwind libwebp-devel libxml2-devel \
            libyaml-devel libzip-devel\
           postgresql-devel\
-           procps-ng python-configobj\
-            readline-devel \ 
-        #    sgml-common \
+        #    procps-ng python-configobj\
+        #     readline-devel \ 
            tar \
            tcl \
            tk  wget which bzip2
