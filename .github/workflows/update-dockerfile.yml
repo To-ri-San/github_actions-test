@@ -20,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: To-ri-San
-          password: ${{secrets.PASS}}
+          password: ${{secrets.TOEKN}}
 
       - name: Build and push
         uses: docker/build-push-action@v2
