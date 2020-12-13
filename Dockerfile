@@ -22,8 +22,10 @@ RUN set -ex \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
            openssl-devel bzip2-devel \
-           dpkg-dev e2fsprogs expat-devel expect fakeroot \
-           glib2-devel groff gzip\
+           dpkg-dev e2fsprogs expat-devel \
+        #    expect fakeroot \
+        #    glib2-devel groff\
+           gzip\
            libcurl-devel libdb-devel libedit-devel libevent-devel libffi-devel \
            libtidy-devel libunwind libwebp-devel libxml2-devel \
            libyaml-devel libzip-devel\
