@@ -28,4 +28,4 @@ jobs:
           context: .
           push: true
           tags: |
-            to-ri-san/toypo-docker:${{ steps.date.outputs.name }}
+            toypo-docker:${{ steps.date.outputs.name }}
