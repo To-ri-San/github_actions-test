@@ -9,23 +9,23 @@ RUN echo timeout=60 >> /etc/yum.conf
 RUN set -ex \
     && yum update -y  \
     && mkdir toypo-api  \
-    # && yum install -y openssh-clients \
-    # && mkdir ~/.ssh \
-    # && touch ~/.ssh/known_hosts \
-    # && ssh-keyscan -t rsa,dsa -H github.com >> ~/.ssh/known_hosts \
-    # && ssh-keyscan -t rsa,dsa -H bitbucket.org >> ~/.ssh/known_hosts \
-    # && chmod 600 ~/.ssh/known_hosts \
+    && yum install -y openssh-clients \
+    && mkdir ~/.ssh \
+    && touch ~/.ssh/known_hosts \
+    && ssh-keyscan -t rsa,dsa -H github.com >> ~/.ssh/known_hosts \
+    && ssh-keyscan -t rsa,dsa -H bitbucket.org >> ~/.ssh/known_hosts \
+    && chmod 600 ~/.ssh/known_hosts \
     && yum install -y $EPEL_REPO \
     && rpm --import https://download.mono-project.com/repo/xamarin.gpg \
     && curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo \
     && amazon-linux-extras enable corretto8 \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
-           openssl-devel bzip2-devel dpkg-dev\
-           gzip libcurl-devel libdb-devel \
-           libtidy-devel libunwind libwebp-devel libxml2-devel \
+            openssl-devel bzip2-devel dpkg-dev mysql-devel\
+           gzip libcurl-devel libdb-devel libxml2 libxslt libxslt-devel\
+           libtidy-devel libunwind libwebp-devel libxml2 libxml2-devel \
            libyaml-devel libzip-devel postgresql-devel readline-devel \
-           tar tcl tk  wget which bzip2
+           tar tcl tk  wget which bzip2 
 
 
 RUN useradd codebuild-user
@@ -56,15 +56,14 @@ RUN set -ex \
 
 RUN rbenv install $RUBY_VERSION; rm -rf /tmp/*; rbenv global $RUBY_VERSION;ruby -v
 
-##rails,puma,redis
-RUN gem install bundler -v 2.0.2 && \
-    bundle install --gemfile=/toypo-api/Gemfile
-
-#postgreswql
+#postgresql
 RUN rpm -ivh --nodeps https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
     sed -i "s/\$releasever/7/g" "/etc/yum.repos.d/pgdg-redhat-all.repo" && \
     yum install -y postgresql11 postgresql11-contrib
 
+##rails,puma,redis
+RUN gem install bundler -v 2.0.2 && \
+    bundle install --gemfile=/toypo-api/Gemfile
 
 # dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
 ENTRYPOINT ["/toypo-api/entrypoint.sh"]
