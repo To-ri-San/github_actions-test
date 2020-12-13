@@ -19,7 +19,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: To-ri-San
+          username: to-ri-san
           password: ${{secrets.TOKEN}}
 
       - name: Build and push
