@@ -6,17 +6,12 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
-    # env:
-    #   TAG_NAME: $(date '+%Y%m%d_%H%M%S')
-    #   TOEKN: 056a4da2500ead926e04485d7a846ae9820fde9c
+
     steps:
       - uses: actions/checkout@v2
       - name: Get current date
         id: date
         run: echo "name=$(date +'%Y%m%d')" >> $GITHUB_ENV
-      # - name: get token
-      #   id: token
-      #   run: echo "token= 056a4da2500ead926e04485d7a846ae9820fde9c" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -25,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: To-ri-San
-          password: 056a4da2500ead926e04485d7a846ae9820fde9c
+          password: ${{secrets.TOKEN}}
 
       - name: Build and push
         uses: docker/build-push-action@v2
