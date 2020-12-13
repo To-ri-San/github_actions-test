@@ -21,17 +21,11 @@ RUN set -ex \
     && amazon-linux-extras enable corretto8 \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
-           openssl-devel bzip2-devel \
-           dpkg-dev\
-            # e2fsprogs expat-devel \
-           gzip\
-           libcurl-devel libdb-devel \
-        #    libedit-devel libevent-devel libffi-devel \
+           openssl-devel bzip2-devel dpkg-dev\
+           gzip libcurl-devel libdb-devel \
            libtidy-devel libunwind libwebp-devel libxml2-devel \
-           libyaml-devel libzip-devel\
-           postgresql-devel\
-            readline-devel \
-            tar tcl tk  wget which bzip2
+           libyaml-devel libzip-devel postgresql-devel readline-devel \
+           tar tcl tk  wget which bzip2
 
 
 RUN useradd codebuild-user
