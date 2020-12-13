@@ -26,8 +26,6 @@ RUN set -ex \
            libtidy-devel libunwind libwebp-devel libxml2 libxml2-devel \
            libyaml-devel libzip-devel postgresql-devel readline-devel \
            tar tcl tk  wget which bzip2 
-
-
 RUN useradd codebuild-user
 
 COPY entrypoint.sh /toypo-api/entrypoint.sh
