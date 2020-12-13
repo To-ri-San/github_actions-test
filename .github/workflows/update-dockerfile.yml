@@ -19,7 +19,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: to-ri-san
+          username: To-ri-San
           password: ${{secrets.TOKEN}}
 
       - name: Build and push
@@ -28,4 +28,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/to-ri-san/toypo-docker:${{ steps.date.outputs.date }}
+            ghcr.io/to-ri-san/toypo-docker:${{ steps.date.outputs.name }}
