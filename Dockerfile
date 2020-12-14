@@ -8,13 +8,7 @@ RUN echo timeout=60 >> /etc/yum.conf
 # Install git, SSH, and other utilities
 RUN set -ex \
     && yum update -y  \
-    # && mkdir toypo-api  \
-    # && yum install -y openssh-clients \
-    # && mkdir ~/.ssh \
-    # && touch ~/.ssh/known_hosts \
-    # && ssh-keyscan -t rsa,dsa -H github.com >> ~/.ssh/known_hosts \
-    # && ssh-keyscan -t rsa,dsa -H bitbucket.org >> ~/.ssh/known_hosts \
-    # && chmod 600 ~/.ssh/known_hosts \
+
     && yum install -y $EPEL_REPO \
     && rpm --import https://download.mono-project.com/repo/xamarin.gpg \
     && curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo \
