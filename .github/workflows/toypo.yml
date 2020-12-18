@@ -36,8 +36,8 @@ jobs:
     #     DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
     steps:
     - uses: actions/checkout@v1
-    - name: sotuukakuninn
-      run:  ping postgres -c 4
+    # - name: sotuukakuninn
+    #   run:  ping postgres -c 4
     - name: postgres test
       run:  psql "postgres://postgres:postgres@postgres:5432" -l
 
