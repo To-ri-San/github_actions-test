@@ -10,10 +10,13 @@ jobs:
         image: postgres:12
         ports:
           - 5432:5432
+        volumes:
+            - ./docker-postgresql-multiple-databases/:/docker-entrypoint-initdb.d/
         env:
           POSTGRES_USER: pguser
           POSTGRES_PASSWORD: password
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     container:
       image: ruby:2.6.5
       env:
