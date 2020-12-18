@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-       image: ghcr.io/toypo/toypo-postgres:latest
-      credentials:
-        username: To-ri-San
-        password: ${{ secrets.TOEKN}}
+        image: ghcr.io/toypo/toypo-postgres:latest
+          credentials:
+            username: To-ri-San
+            password: ${{ secrets.TOEKN}}
         ports:
           - 5432:5432
         env:
