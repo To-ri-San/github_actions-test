@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name : test path
-      run :  ${{ github.repository }}
+      run : echo  ${{ github.repository }}
     - name: Prepare bundler
       run: |
         gem install bundler
