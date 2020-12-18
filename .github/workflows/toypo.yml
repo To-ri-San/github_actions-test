@@ -23,12 +23,12 @@ jobs:
         RAILS_DATABASE_PASSWORD: password
     steps:
     - name : test
-      run : cwd
+      run : pwd
     - uses: actions/checkout@v1
     - name : test path
       run : 
         echo  ${{ github.repository }}
-        cwd
+        pwd
     # - name: Prepare bundler
     #   run: |
     #     gem install bundler
