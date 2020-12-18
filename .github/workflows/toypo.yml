@@ -17,7 +17,7 @@ jobs:
         #   POSTGRES_USER: postgres
         #   POSTGRES_PASSWORD: postgres
         #   OSTGRES_MULTIPLE_DATABASES: toypo_test, toypo_test2, toypo_test3, toypo_test4
-        # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     container:
       image: ruby:2.6.5
@@ -26,7 +26,7 @@ jobs:
         RAILS_DATABASE_HOST: postgres # this is need
         RAILS_DATABASE_USER: postgres
         RAILS_DATABASE_PASSWORD: password
-        # DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
+        DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
     steps:
     - uses: actions/checkout@v1
     - name: postgres test
