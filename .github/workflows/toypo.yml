@@ -10,6 +10,9 @@ jobs:
 
     services:
       postgres:
+        # build:
+        #   context: .
+        #   dockerfile: /path
         image: postgres:12
         ports:
           - 5432:5432
