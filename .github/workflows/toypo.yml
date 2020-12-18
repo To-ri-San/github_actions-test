@@ -22,18 +22,20 @@ jobs:
         RAILS_DATABASE_USER: pguser
         RAILS_DATABASE_PASSWORD: password
     steps:
+    - name : test
+      run : cwd
     - uses: actions/checkout@v1
     - name : test path
       run : 
         echo  ${{ github.repository }}
-        echo $GITHUB_WORKSPACE
-    - name: Prepare bundler
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-    - name: Prepare database
-      run: |
-        bin/rails db:create
-        bin/rails db:schema:load
-    - name: Run test
-      run: bin/rspec
+        cwd
+    # - name: Prepare bundler
+    #   run: |
+    #     gem install bundler
+    #     bundle install --jobs 4 --retry 3
+    # - name: Prepare database
+    #   run: |
+    #     bin/rails db:create
+    #     bin/rails db:schema:load
+    # - name: Run test
+    #   run: bin/rspec
