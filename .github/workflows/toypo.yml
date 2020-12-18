@@ -5,22 +5,18 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
     services:
       postgres:
-        # build:
-        #   context: .
-        #   dockerfile: /path
-        image: postgres:12
+       image: ghcr.io/toypo/toypo-postgres:latest
+      credentials:
+        username: To-ri-San
+        password: ${{ secrets.TOEKN}}
         ports:
           - 5432:5432
-        volumes:
-            - ${{github.workflow}}/docker-postgresql-multiple-databases/:/docker-entrypoint-initdb.d/
         env:
-          POSTGRES_USER: pguser
-          POSTGRES_PASSWORD: password
+          OSTGRES_MULTIPLE_DATABASES: toypo_test, toypo_test2, toypo_test3, toypo_test4
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     container:
@@ -28,23 +24,11 @@ jobs:
       env:
         RAILS_ENV: test
         RAILS_DATABASE_HOST: postgres # this is need
-        RAILS_DATABASE_USER: pguser
+        RAILS_DATABASE_USER: postgres
         RAILS_DATABASE_PASSWORD: password
+        # DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
     steps:
-    - name : test
-      run : echo 
     - uses: actions/checkout@v1
-    - name : test path
-      run : 
-        echo  ${{ github.repository }}
-        pwd
-    # - name: Prepare bundler
-    #   run: |
-    #     gem install bundler
-    #     bundle install --jobs 4 --retry 3
-    # - name: Prepare database
-    #   run: |
-    #     bin/rails db:create
-    #     bin/rails db:schema:load
-    # - name: Run test
-    #   run: bin/rspec
+    - name: postgres test
+      run:  psql "postgres://postgres:postgres@postgres:5432" -l
+
