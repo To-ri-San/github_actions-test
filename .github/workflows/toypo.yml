@@ -20,12 +20,15 @@ jobs:
         # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     container:
-      image: ruby:2.6.5
+      image: ghcr.io/to-ri-san/toypo-docker:latest
+      credentials:
+        username: To-ri-San
+        password: ${{secrets.TOEKN}}
       env:
         RAILS_ENV: test
         RAILS_DATABASE_HOST: postgres # this is need
         RAILS_DATABASE_USER: postgres
-        RAILS_DATABASE_PASSWORD: password
+        RAILS_DATABASE_PASSWORD: postgres
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
     steps:
     - uses: actions/checkout@v1
