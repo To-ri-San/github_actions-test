@@ -5,13 +5,14 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:12
         ports:
           - 5432:5432
         volumes:
-            - ./docker-postgresql-multiple-databases/:/docker-entrypoint-initdb.d/
+            - ${{github.repository}}/docker-postgresql-multiple-databases/:/docker-entrypoint-initdb.d/
         env:
           POSTGRES_USER: pguser
           POSTGRES_PASSWORD: password
@@ -26,7 +27,7 @@ jobs:
         RAILS_DATABASE_PASSWORD: password
     steps:
     - name : test
-      run : pwd
+      run : echo 
     - uses: actions/checkout@v1
     - name : test path
       run : 
