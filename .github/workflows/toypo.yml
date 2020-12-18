@@ -27,7 +27,7 @@ jobs:
         RAILS_DATABASE_HOST: postgres # this is need
         RAILS_DATABASE_USER: pguser
         RAILS_DATABASE_PASSWORD: password
-    # steps:
+    steps:
     - name : test
       run : echo 
     - uses: actions/checkout@v1
