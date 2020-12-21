@@ -8,17 +8,13 @@ jobs:
     services:
       postgres:
         image: postgres:11
-        # image: ghcr.io/to-ri-san/toypo-postgres:latest
-        # credentials:
-        #   username: To-ri-San
-        #   password: ${{secrets.TOEKN}}
         ports:
           - 5432:5432
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: toypo_test          
-          # POSTGRES_MULTIPLE_DATABASES: toypo_test, toypo_test2, toypo_test3, toypo_test4
+          # POSTGRES_DB: toypo_test          
+          # # POSTGRES_MULTIPLE_DATABASES: toypo_test, toypo_test2, toypo_test3, toypo_test4
 
         # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
@@ -35,8 +31,18 @@ jobs:
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
     steps:
     - uses: actions/checkout@v1
-    # - name: sotuukakuninn
-    #   run:  ping postgres -c 4
+    - name: create test1
+      env: 
+        RAILS_ENV: test
+      run: bundle exec rake db:create
+    - name: create test2
+      env: 
+        RAILS_ENV: test2
+      run: bundle exec rake db:create
+    - name: create test3
+      env: 
+        RAILS_ENV: test3
+      run: bundle exec rake db:create      
     - name: postgres test
       run:  psql "postgres://postgres:postgres@postgres:5432" -l
 
