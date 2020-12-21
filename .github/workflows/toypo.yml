@@ -24,7 +24,7 @@ jobs:
         username: To-ri-San
         password: ${{secrets.TOEKN}}
       env:
-        RAILS_ENV: test
+        # RAILS_ENV: test
         RAILS_DATABASE_HOST: postgres # this is need
         RAILS_DATABASE_USER: postgres
         RAILS_DATABASE_PASSWORD: postgres
@@ -45,4 +45,6 @@ jobs:
       run: bundle exec rake db:create      
     - name: postgres test
       run:  psql "postgres://postgres:postgres@postgres:5432" -l
+    - name: migrate
+      run : bundle exec rake db:migrate
 
