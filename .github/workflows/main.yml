@@ -1,11 +1,85 @@
-name: gihub_actions_CI
+name: run container rspec
 
-on: [push]
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened,synchronize]
 
 jobs:
-  test-code:
+  # build:
+  #   runs-on: ubuntu-latest
+
+  #   services:
+  #     postgres:
+  #       image: postgres:11-alpine
+  #       ports:
+  #         - 5432:5432
+  #       env:
+  #         POSTGRES_USER: postgres
+  #         POSTGRES_PASSWORD: password
+
+  #       options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+  #     redis:
+  #       image: redis:4.0.10-alpine
+  #       ports:
+  #         - 6379:6379
+  #       # redisが起動するまで待つヘルスチェックの設定
+  #       options: >-
+  #         --health-cmd "redis-cli ping"
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
+
+  #   container:
+  #     image: ghcr.io/toypo/toypo-docker:latest
+  #     credentials:
+  #       username: ${{ secrets.OWNER_USERNAME }}
+  #       password: ${{ secrets.CONTAINER_REGISTRY_ACCESS_TOKEN }}
+
+  #     env:
+  #       SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+  #       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+  #       RAILS_DATABASE_HOST: postgres # this is needed
+  #       RAILS_DATABASE_USER: postgres
+  #       RAILS_DATABASE_PASSWORD: password
+  #       REDIS_URL: redis://redis:6379
+
+  #   steps:
+  #   - uses: actions/checkout@v1
+  #   - name: sed localhost->postgres
+  #     run: grep -l '127.0.0.1' config/database.yml | xargs sed -i.bak -e 's/127.0.0.1/postgres/g'
+  #   - name: sed root->postgres
+  #     run: grep -l 'root' config/database.yml | xargs sed -i.bak -e 's/root/postgres/g'
+  #   - name: setup db
+  #     run: bundle exec rails parallel:setup
+  #   - name: Run rspec
+  #     run: bundle exec parallel_rspec spec
+
+  main_deploy:
+    # needs: [build]
+    # if: github.ref == 'refs/heads/feature/github_action_test'
+
     runs-on: ubuntu-latest
-    name: test-code
     steps:
-    - name: run-rspec
-      uses: To-ri-San/github_actions-test@main
+      - uses: actions/checkout@v2
+      - name: Deploy
+        env:
+          PRIVATE_KEY: ${{ secrets.AWS_TOYPO_DEVELOPERS_KEY }}
+          USER_NAME: ec2-user
+          HOST_NAME: 54.168.102.239
+          ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+          printf "${ACCESS_KEY}\n${SECRET_ACCESS_KEY}\nap-northeast-1\njson\n" | aws configure --profile eyemovic-dev
+          aws configure get aws_access_key_id --profile eyemovic-dev 
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
+          cd /home/ec2-user/toypo-api &&
+          git checkout main &&
+          git fetch --all &&
+          git reset --hard origin/main &&
+          git pull origin main
