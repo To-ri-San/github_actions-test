@@ -1,5 +1,5 @@
 name: github actions ci
-om: 
+on: 
   pull_request:
   types: [opened,synchronize]
 jobs:
