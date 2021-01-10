@@ -1,5 +1,6 @@
 name: github actions ci
-pull_request:
+om: 
+  pull_request:
   types: [opened,synchronize]
 jobs:
   build:
