@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest   
     services:
       postgres:
         image: postgres:11
@@ -13,6 +13,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+<<<<<<< Updated upstream
           # POSTGRES_DB: toypo_test          
           # # POSTGRES_MULTIPLE_DATABASES: toypo_test, toypo_test2, toypo_test3, toypo_test4
 
@@ -29,6 +30,10 @@ jobs:
         RAILS_DATABASE_USER: postgres
         RAILS_DATABASE_PASSWORD: postgres
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
+    strategy:
+      matrix:
+        parallelism: [3]
+        id: [0,1,2]     
     steps:
     - uses: actions/checkout@v1
     - name: create test1
