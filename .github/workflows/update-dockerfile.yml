@@ -28,4 +28,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/To-ri-San/toypo-docker:${GITHUB_REF##*/}
+          tags: ghcr.io/To-ri-San/toypo-docker
+          tag_with_ref: true
