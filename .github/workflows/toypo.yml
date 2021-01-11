@@ -2,8 +2,11 @@ name: github actions ci
 on:
   workflow_dispatch:
   push:
+  pull_request:
+    types: [closed]
 jobs:
   build:
+    if: ${{ github.event_name == 'push' || github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest   
     # services:
     #   postgres:
