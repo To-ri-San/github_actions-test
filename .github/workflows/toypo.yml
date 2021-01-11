@@ -42,7 +42,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v1      
       - name: push 
-        run: ehco push
+        run: echo push
       - name: mergi
         if: ${{ github.event.pull_request.merged == true }}
         run: echo mergi
