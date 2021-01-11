@@ -41,11 +41,12 @@ jobs:
     # - name: setup db
     #   run: bundle exec rails parallel:setup
     # - name: Run rspec
-    #   run: bundle exec parallel_rspec spec
+    #   run: bundle exec parallel_rspec spec     
     steps: 
       - uses: actions/checkout@v1      
-      - name: write a
-        run: |
-          cat test.txt
-
+      - name: push 
+        run: echo push
+      - name: mergi
+        if: ${{ github.event.pull_request.merged == true }}
+        run: echo mergi
 
