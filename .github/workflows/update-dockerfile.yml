@@ -28,5 +28,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/To-ri-San/toypo-docker
+          tags: ghcr.io/to-ri-san/toypo-docker
           tag_with_ref: true
