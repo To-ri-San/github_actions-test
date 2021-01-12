@@ -2,10 +2,8 @@ name: github actions ci
 on:
   workflow_dispatch:
   push:
-    branches:
-      - branch-a
   pull_request:
-    types: [closed]
+    types: [closed,]
 jobs:
   build:
     if: ${{ github.event_name == 'push' || github.event.pull_request.merged == true }}
