@@ -2,6 +2,8 @@ name: github actions ci
 on:
   workflow_dispatch:
   push:
+    branches:
+      - branch-a
   pull_request:
     types: [closed]
 jobs:
