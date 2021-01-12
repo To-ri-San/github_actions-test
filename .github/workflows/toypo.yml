@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
   pull_request:
-    types: [closed,]
+    types: [closed,synchronize]
 jobs:
   build:
     if: ${{ github.event_name == 'push' || github.event.pull_request.merged == true }}
