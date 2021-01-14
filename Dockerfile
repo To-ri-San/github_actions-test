@@ -58,5 +58,3 @@ RUN rpm -ivh --nodeps https://download.postgresql.org/pub/repos/yum/11/redhat/rh
 RUN gem install bundler -v 2.0.2 && \
     bundle install --gemfile=/toypo-api/Gemfile
 
-# dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
-ENTRYPOINT ["/toypo-api/entrypoint.sh"]
