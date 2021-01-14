@@ -42,10 +42,13 @@ jobs:
     # - name: Run rspec
     #   run: bundle exec parallel_rspec spec     
     steps: 
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ hashFiles('vendor/hash') }}
       - name: bundle install
-        run: |
-          rm Gemfile.lock
-          bundle install
+        run:  bundle install --parh  vendor/bundle
       - name: gem list 
         run: gem list
