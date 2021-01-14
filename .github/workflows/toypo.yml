@@ -43,7 +43,7 @@ jobs:
     #   run: bundle exec parallel_rspec spec     
     steps: 
       - uses: actions/checkout@v1
-      - name: bundle install 
-        run: bundle install
+      - name: bundle update 
+        run: bundle update
       - name: gem list 
         run: gem list
