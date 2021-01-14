@@ -48,4 +48,5 @@ jobs:
       - name: bundle install 
         run: bundle install
       - name: less Gemfile.lock
+        run: cat Gemfile.lock
 
