@@ -51,4 +51,4 @@ RUN rpm -ivh --nodeps https://download.postgresql.org/pub/repos/yum/11/redhat/rh
     yum install -y postgresql11 postgresql11-contrib
 
 ##rails,puma,
-RUN gem install bundler -v 2.0.2 && \
+RUN gem install bundler -v 2.0.2
