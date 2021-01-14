@@ -46,6 +46,6 @@ jobs:
       - name: bundle update 
         run: bundle update
       - name: bundle clean --force
-        run: bundle clean
+        run: bundle clean --force
       - name: gem list 
         run: gem list
