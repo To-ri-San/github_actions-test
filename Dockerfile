@@ -4,6 +4,7 @@ SHELL ["/bin/bash", "-c"]
 ENV EPEL_REPO="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
 
 ENV RUBY_VERSION="2.5.1" 
+ENV RAILS_ENV="test"
 RUN echo timeout=60 >> /etc/yum.conf
 # Install git, SSH, and other utilities
 RUN set -ex \
@@ -19,14 +20,10 @@ RUN set -ex \
            libtidy-devel libunwind libwebp-devel libxml2 libxml2-devel \
            libyaml-devel libzip-devel postgresql-devel readline-devel \
            tar tcl tk  wget which bzip2 
-           
-RUN useradd codebuild-user
 
-COPY entrypoint.sh /toypo-api/entrypoint.sh
-COPY Gemfile /toypo-api/Gemfile
-COPY Gemfile.lock /toypo-api/Gemfile.lock
-RUN cd /toypo-api/ &&\
-    ls -la
+RUN mkdir /toypo-api
+ADD Gemfile /toypo-api/Gemfile
+ADD Gemfile.lock /toypo-api/Gemfile.lock
 # AWS Tools
 RUN curl -sS -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator \
     && curl -sS -o /usr/local/bin/kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl \
