@@ -19,7 +19,7 @@ RUN set -ex \
            gzip libcurl-devel libdb-devel libxml2 libxslt libxslt-devel\
            libtidy-devel libunwind libwebp-devel libxml2 libxml2-devel \
            libyaml-devel libzip-devel postgresql-devel readline-devel \
-           tar tcl tk  wget which bzip2 
+           tar tcl tk  wget which bzip2 ImageMagick 
 
 RUN mkdir /toypo-api
 ADD Gemfile /toypo-api/Gemfile

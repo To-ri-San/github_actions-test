@@ -91,7 +91,7 @@ group :development, :test do
   gem "rubocop-performance", "~> 1.5.1"
   gem "rubocop-rails", "~> 2.4.0"
   gem "bullet"
-  gem "parallel_tests"
+  # gem "parallel_tests"
 end
 
 group :staging, :production do
