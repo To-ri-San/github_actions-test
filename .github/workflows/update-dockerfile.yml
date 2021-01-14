@@ -32,4 +32,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.docker_meta.outputs.tags }}
+          tags: ghcr.io/to-ri-san/toypo-docker:${github.ref}
