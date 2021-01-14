@@ -26,6 +26,7 @@ jobs:
         password: ${{secrets.TOEKN}}
       env:
         RAILS_ENV: test
+        RACK_ENV: test
     #     RAILS_DATABASE_HOST: postgres # this is need
     #     RAILS_DATABASE_USER: postgres
     #     RAILS_DATABASE_PASSWORD: postgres
