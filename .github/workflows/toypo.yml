@@ -5,7 +5,7 @@ on:
     types: [opened,synchronize]
     branches:
       - develop
-jobs:
+
 jobs:
   build:
     runs-on: ubuntu-latest   
