@@ -45,5 +45,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: bundle update 
         run: bundle update
+      - name: bundle clean
+        run: bundle clean
       - name: gem list 
         run: gem list
