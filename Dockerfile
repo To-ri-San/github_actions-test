@@ -21,9 +21,6 @@ RUN set -ex \
            libyaml-devel libzip-devel postgresql-devel readline-devel \
            tar tcl tk  wget which bzip2 ImageMagick 
 
-RUN mkdir /toypo-api
-ADD Gemfile /toypo-api/Gemfile
-ADD Gemfile.lock /toypo-api/Gemfile.lock
 # AWS Tools
 RUN curl -sS -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator \
     && curl -sS -o /usr/local/bin/kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl \
