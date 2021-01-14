@@ -43,8 +43,8 @@ jobs:
     #   run: bundle exec parallel_rspec spec     
     steps: 
       - uses: actions/checkout@v1
-      - name: rm Gemfile.lock
-        run: Gemfile.lock
+      # - name: rm Gemfile.lock
+      #   run: Gemfile.lock
       - name: bundle install 
         run: bundle install
       - name: less Gemfile.lock
