@@ -49,6 +49,6 @@ jobs:
           path: vendor/bundle
           key: ${{ hashFiles('Gemfile.lock') }}
       - name: bundle install
-        run:  bundle install --parh  vendor/bundle
+        run:  bundle install --path  vendor/bundle
       - name: gem list 
         run: gem list
