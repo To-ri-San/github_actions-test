@@ -1,7 +1,8 @@
 name: github actions ci
 on:
   workflow_dispatch:
-  push:
+  pull_request:
+    types: [opened,synchronize]
 jobs:
   build:
     runs-on: ubuntu-latest   
