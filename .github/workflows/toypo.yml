@@ -44,9 +44,8 @@ jobs:
     steps: 
       - uses: actions/checkout@v1
       - name: rm Gemfile.lock
-        run: Gemfile.lock
+        run: rm Gemfile.lock
       - name: bundle install 
         run: bundle install
       - name: less Gemfile.lock
         run: cat Gemfile.lock
-
