@@ -1,6 +1,7 @@
 # コードを実行するコンテナイメージ
 FROM amazonlinux:2 AS core
 SHELL ["/bin/bash", "-c"]
+
 ENV EPEL_REPO="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
 
 ENV RUBY_VERSION="2.5.1" 
