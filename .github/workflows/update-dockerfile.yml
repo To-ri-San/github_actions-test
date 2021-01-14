@@ -1,6 +1,7 @@
 name: Build and Publish Docker
 on:
   workflow_dispatch:
+  create:
   push:
     paths:
     - 'Dockerfile'
@@ -9,7 +10,6 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Docker meta
