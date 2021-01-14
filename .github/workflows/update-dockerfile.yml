@@ -1,7 +1,6 @@
 name: Build and Publish Docker
 on:
   workflow_dispatch:
-  create:
   push:
     paths:
     - 'Dockerfile'
