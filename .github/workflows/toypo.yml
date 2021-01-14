@@ -43,9 +43,9 @@ jobs:
     #   run: bundle exec parallel_rspec spec     
     steps: 
       - uses: actions/checkout@v1
-      - name: bundle update 
-        run: bundle update
-      - name: bundle clean --force
-        run: bundle clean --force
+      - name: bundle install
+        run: |
+          rm Gemfile.lock
+          bundle install
       - name: gem list 
         run: gem list
