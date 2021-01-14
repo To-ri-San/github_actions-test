@@ -2,12 +2,10 @@ name: github actions ci
 on:
   workflow_dispatch:
   push:
-  pull_request:
-    types: [closed,synchronize]
 jobs:
   build:
-    if: ${{ github.event_name == 'push' || github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest   
+    
     # services:
     #   postgres:
     #     image: postgres:11
@@ -21,13 +19,13 @@ jobs:
 
     #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
-    # container:
-    #   image: ghcr.io/to-ri-san/toypo-docker:latest
-    #   credentials:
-    #     username: To-ri-San
-    #     password: ${{secrets.TOEKN}}
-    #   env:
-    #     # RAILS_ENV: test
+    container:
+      image: ghcr.io/to-ri-san/toypo-docker:${GITHUB_REF##*/}
+      credentials:
+        username: To-ri-San
+        password: ${{secrets.TOEKN}}
+      env:
+        RAILS_ENV: test
     #     RAILS_DATABASE_HOST: postgres # this is need
     #     RAILS_DATABASE_USER: postgres
     #     RAILS_DATABASE_PASSWORD: postgres
@@ -41,13 +39,14 @@ jobs:
     # - name: setup db
     #   run: bundle exec rails parallel:setup
     # - name: Run rspec
-    #   run: bundle exec parallel_rspec spec
+    #   run: bundle exec parallel_rspec spec     
     steps: 
-      - uses: actions/checkout@v1      
+      - uses: actions/checkout@v1
+      - name: bundle install 
+        run: bundle install
       - name: push 
         run: echo push
       - name: mergi
         if: ${{ github.event.pull_request.merged == true }}
         run: echo mergi
-      
 
