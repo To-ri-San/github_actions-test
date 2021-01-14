@@ -43,11 +43,9 @@ jobs:
     #   run: bundle exec parallel_rspec spec     
     steps: 
       - uses: actions/checkout@v1
+      - name: rm Gemfile.lock
+        run: Gemfile.lock
       - name: bundle install 
         run: bundle install
-      - name: push 
-        run: echo push
-      - name: mergi
-        if: ${{ github.event.pull_request.merged == true }}
-        run: echo mergi
+      - name: less Gemfile.lock
 
