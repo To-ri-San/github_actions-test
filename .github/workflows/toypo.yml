@@ -45,5 +45,5 @@ jobs:
       - uses: actions/checkout@v1
       - name: bundle install 
         run: bundle install
-      - name: less Gemfile.lock
-        run: cat Gemfile.lock
+      - name: gem list 
+        run: gem list
