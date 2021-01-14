@@ -5,6 +5,7 @@ SHELL ["/bin/bash", "-c"]
 ENV EPEL_REPO="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
 
 ENV RUBY_VERSION="2.5.1" 
+ENV RAILS_ENV="test"
 RUN echo timeout=60 >> /etc/yum.conf
 # Install git, SSH, and other utilities
 RUN set -ex \
@@ -19,15 +20,8 @@ RUN set -ex \
            gzip libcurl-devel libdb-devel libxml2 libxslt libxslt-devel\
            libtidy-devel libunwind libwebp-devel libxml2 libxml2-devel \
            libyaml-devel libzip-devel postgresql-devel readline-devel \
-           tar tcl tk  wget which bzip2 
-           
-RUN useradd codebuild-user
+           tar tcl tk  wget which bzip2 ImageMagick 
 
-COPY entrypoint.sh /toypo-api/entrypoint.sh
-COPY Gemfile /toypo-api/Gemfile
-COPY Gemfile.lock /toypo-api/Gemfile.lock
-RUN cd /toypo-api/ &&\
-    ls -la
 # AWS Tools
 RUN curl -sS -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator \
     && curl -sS -o /usr/local/bin/kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl \
@@ -55,6 +49,4 @@ RUN rpm -ivh --nodeps https://download.postgresql.org/pub/repos/yum/11/redhat/rh
     yum install -y postgresql11 postgresql11-contrib
 
 ##rails,puma,
-RUN gem install bundler -v 2.0.2 && \
-    bundle install --gemfile=/toypo-api/Gemfile
-
+RUN gem install bundler -v 2.0.2
