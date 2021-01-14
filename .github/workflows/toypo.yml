@@ -24,8 +24,8 @@ jobs:
       credentials:
         username: To-ri-San
         password: ${{secrets.TOEKN}}
-    #   env:
-    #     # RAILS_ENV: test
+      env:
+        RAILS_ENV: test
     #     RAILS_DATABASE_HOST: postgres # this is need
     #     RAILS_DATABASE_USER: postgres
     #     RAILS_DATABASE_PASSWORD: postgres
