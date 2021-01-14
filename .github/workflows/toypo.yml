@@ -3,6 +3,9 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened,synchronize]
+    branches:
+      - develop
+jobs:
 jobs:
   build:
     runs-on: ubuntu-latest   
