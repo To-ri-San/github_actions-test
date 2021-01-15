@@ -1,11 +1,13 @@
-name: github actions ci
+name: github actions develop ci
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
   pull_request:
     types: [opened,synchronize]
     branches:
       - develop
-
 jobs:
   build:
     runs-on: ubuntu-latest   
