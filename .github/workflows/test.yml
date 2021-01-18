@@ -1,0 +1,60 @@
+name: test ci
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types: [opened]
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest   
+    
+    # services:
+    #   postgres:
+    #     image: postgres:11
+    #     ports:
+    #       - 5432:5432
+    #     env:
+    #       POSTGRES_USER: postgres
+    #       POSTGRES_PASSWORD: postgres
+    #       # POSTGRES_DB: toypo_test          
+    #       # # POSTGRES_MULTIPLE_DATABASES: toypo_test, toypo_test2, toypo_test3, toypo_test4
+
+    #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    container:
+      image: ghcr.io/to-ri-san/toypo-docker:latest
+      credentials:
+        username: To-ri-San
+        password: ${{secrets.TOEKN}}
+      env:
+        RAILS_ENV: test
+        RACK_ENV: test
+    #     RAILS_DATABASE_HOST: postgres # this is need
+    #     RAILS_DATABASE_USER: postgres
+    #     RAILS_DATABASE_PASSWORD: postgres
+    #     DATABASE_URL: postgres://postgres:postgres@postgres:5432/toypo_test
+    # steps:
+    # - uses: actions/checkout@v1
+    # - name: sed localhost->postgres
+    #   run: grep -l '127.0.0.1' config/database.yml | xargs sed -i.bak -e 's/127.0.0.1/postgres/g'
+    # - name: sed root->postgres
+    #   run: grep -l 'root' config/database.yml | xargs sed -i.bak -e 's/root/postgres/g'
+    # - name: setup db
+    #   run: bundle exec rails parallel:setup
+    # - name: Run rspec
+    #   run: bundle exec parallel_rspec spec     
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Cache Gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ hashFiles('Gemfile.lock') }}
+      - name: bundle install
+        run:  bundle install --path  vendor/bundle
+      - name: test hanbetsu
+        run: cat test.txt
