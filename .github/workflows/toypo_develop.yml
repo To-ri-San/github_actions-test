@@ -68,4 +68,3 @@ jobs:
           SLACK_CHANNEL: ci
           SLACK_TITLE: Test Success
           SLACK_COLOR: good
-
