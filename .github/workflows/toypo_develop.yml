@@ -59,12 +59,12 @@ jobs:
       - name: test hanbetsu
         run: cat test.txt
 
-    - name: Slack Notification on Success
-      if: success()
-      uses: rtCamp/action-slack-notify@v2.0.2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: ci
-        SLACK_TITLE: Test Success
-        SLACK_COLOR: good
+      - name: Slack Notification on Success
+        if: success()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: ci
+          SLACK_TITLE: Test Success
+          SLACK_COLOR: good
 
