@@ -64,6 +64,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          author_name: github actions
           SLACK_CHANNEL: ci
           SLACK_TITLE: Test Success
           SLACK_COLOR: good
